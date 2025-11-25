@@ -33,14 +33,8 @@ public class AudioSettingsUI : MonoBehaviour
         if (mixer == null || slider == null)
             return;
 
-        if (mixer.GetFloat(exposedParam, out float dB))
-        {
-            slider.SetValueWithoutNotify(DecibelToLinear(dB));
-        }
-        else
-        {
-            Debug.LogWarning($"AudioSettings: Mixer parameter '{exposedParam}' not found.");
-        }
+        if (mixer.GetFloat(exposedParam, out float dB)) 
+            slider.SetValueWithoutNotify(DecibelToLinear(dB)); 
     } 
     public static float DecibelToLinear(float dB)
     {
@@ -48,8 +42,7 @@ public class AudioSettingsUI : MonoBehaviour
     }
     public static float LinearToDecibel(float linear)
     {
-        if (linear <= 0.0001f)
-            return -80f; // practically silent
+        if (linear <= 0.0001f) return -80f; 
         return Mathf.Log10(linear) * 20f;
     }
 }
